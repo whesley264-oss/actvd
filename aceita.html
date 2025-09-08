@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Pedido Especial</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: white;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        border: 8px solid red;
+        border-radius: 20px;
+        padding: 40px;
+        display: inline-block;
+        margin-top: 50px;
+    }
+    h1 {
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 18px 35px;
+        font-size: 22px;
+        cursor: pointer;
+        border-radius: 8px;
+        margin: 15px;
+    }
+    #nao {
+        position: absolute;
+    }
+    img {
+        display: block;
+        margin: 30px auto 0;
+        width: 350px; /* aumentei o tamanho */
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1><b>Aceita namorar comigo?</b></h1>
+    <button id="sim" onclick="aceitou()">Sim!</button>
+    <button id="nao" onmouseover="fugir()">Não!</button>
+    <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif">
+</div>
+
+<script>
+    function aceitou() {
+        alert("Ebaa! Eu te amo ❤️");
+    }
+
+    function fugir() {
+        let btn = document.getElementById('nao');
+        let x = Math.random() * (window.innerWidth - btn.offsetWidth);
+        let y = Math.random() * (window.innerHeight - btn.offsetHeight);
+        btn.style.left = `${x}px`;
+        btn.style.top = `${y}px`;
+    }
+</script>
+
+</body>
+</html>
