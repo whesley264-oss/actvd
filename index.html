@@ -2,66 +2,103 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pedido Especial</title>
 <style>
+    * { box-sizing: border-box; }
     body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        background-color: white;
         margin: 0;
-        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #ffd9e8, #ffb3cd, #ffe9f2);
     }
     .container {
-        border: 8px solid red;
-        border-radius: 20px;
-        padding: 40px;
-        display: inline-block;
-        margin-top: 50px;
+        background: #fff;
+        padding: 48px 40px;
+        border-radius: 24px;
+        box-shadow: 0 12px 40px rgba(224, 75, 128, 0.2);
+        text-align: center;
+        max-width: 520px;
+        width: 90%;
     }
     h1 {
-        font-size: 40px;
-        margin-bottom: 30px;
+        font-size: 32px;
+        color: #333;
+        margin: 0 0 28px;
+    }
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
     }
     button {
-        background-color: red;
-        color: white;
-        border: none;
-        padding: 18px 35px;
-        font-size: 22px;
+        font-size: 20px;
+        padding: 14px 32px;
+        border-radius: 10px;
+        border: 2px solid #e5486b;
         cursor: pointer;
-        border-radius: 8px;
-        margin: 15px;
+        transition: background-color .15s, transform .15s, left .3s, top .3s;
+    }
+    #sim {
+        background: #e5486b;
+        color: #fff;
+    }
+    #sim:hover {
+        background: #d13a5c;
+        transform: scale(1.06);
     }
     #nao {
-        position: absolute;
+        background: transparent;
+        color: #e5486b;
     }
     img {
-        display: block;
-        margin: 30px auto 0;
-        width: 350px; /* aumentei o tamanho */
+        margin-top: 28px;
+        max-width: 300px;
+        width: 80%;
+        border-radius: 12px;
     }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h1><b>Aceita namorar comigo?</b></h1>
-    <button id="sim" onclick="aceitou()">Sim!</button>
-    <button id="nao" onmouseover="fugir()">Não!</button>
-    <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif">
+    <h1>Aceita namorar comigo?</h1>
+    <div class="buttons">
+        <button id="sim">Sim!</button>
+        <button id="nao">Não</button>
+    </div>
+    <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif" alt="Ursinho apaixonado">
 </div>
 
 <script>
+    const sim = document.getElementById('sim');
+    const nao = document.getElementById('nao');
+
+    sim.addEventListener('click', aceitou);
+    nao.addEventListener('mouseover', fugir);
+    nao.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        fugir();
+    });
+
     function aceitou() {
-        alert("Ebaa! Eu te amo ❤️");
+        document.querySelector('.container').innerHTML = `
+            <h1>Sabia que você ia aceitar.</h1>
+            <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif" alt="Ursinho apaixonado comemorando">
+        `;
     }
 
     function fugir() {
-        let btn = document.getElementById('nao');
-        let x = Math.random() * (window.innerWidth - btn.offsetWidth);
-        let y = Math.random() * (window.innerHeight - btn.offsetHeight);
-        btn.style.left = `${x}px`;
-        btn.style.top = `${y}px`;
+        nao.style.position = 'fixed';
+        const x = Math.random() * (window.innerWidth - nao.offsetWidth);
+        const y = Math.random() * (window.innerHeight - nao.offsetHeight);
+        nao.style.left = `${x}px`;
+        nao.style.top = `${y}px`;
     }
 </script>
 
