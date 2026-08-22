@@ -93,6 +93,7 @@
 <script>
     const sim = document.getElementById('sim');
     const nao = document.getElementById('nao');
+    let fugas = 0;
 
     sim.addEventListener('click', aceitou);
     nao.addEventListener('mouseover', fugir);
@@ -101,14 +102,26 @@
         fugir();
     });
 
+    // no desktop, foge antes do mouse chegar
+    document.addEventListener('mousemove', (e) => {
+        if (nao.style.position !== 'fixed') return;
+        const rect = nao.getBoundingClientRect();
+        const distX = e.clientX - (rect.left + rect.width / 2);
+        const distY = e.clientY - (rect.top + rect.height / 2);
+        const dist = Math.sqrt(distX * distX + distY * distY);
+        if (dist < 170) fugir();
+    });
+
     function aceitou() {
         document.querySelector('.container').innerHTML = `
             <h1>Sabia que você ia aceitar.</h1>
+            <p>${fugas > 0 ? `Você tentou fugir ${fugas} vezes.` : 'Vem sempre assim.'}</p>
             <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif" alt="Ursinho apaixonado comemorando">
         `;
     }
 
     function fugir() {
+        fugas++;
         nao.style.position = 'fixed';
         const x = Math.random() * (window.innerWidth - nao.offsetWidth);
         const y = Math.random() * (window.innerHeight - nao.offsetHeight);
