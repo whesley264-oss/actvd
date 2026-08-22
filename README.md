@@ -1,9 +1,9 @@
 # Pedido de Namoro
 
-A ideia é simples: a pessoa recebe a pergunta na tela, e o botão "Não" foge do cursor. Pode tentar recusar a vontade, mas vai cansar antes.
-
-Feito com HTML, CSS e JavaScript puro. Nenhum framework foi machucado nesse processo.
+A clássica pegadinha: o botão "Não" foge do mouse. Não tem como recusar, é matematicamente impossível.
 
 ## Como usar
 
-Abre o `index.html` no navegador. Pronto, esse é o deploy inteiro.
+Abre o https://whesley264-oss.github.io/actvd/ ou só baixa e abre o index.html.
+
+Feito com HTML, CSS e JS puro porque framework pra isso seria demais.
